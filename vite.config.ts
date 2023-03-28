@@ -14,6 +14,9 @@ export default defineConfig({
       hashPrefix: 'prefix',
     }
   },
+  server: {
+    open: './example/index.html',
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
