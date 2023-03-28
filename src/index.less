@@ -1,0 +1,58 @@
+@bd-c: #f2f2f2;
+.wrap {
+    margin: 20px;
+    border: 1px solid @bd-c;
+}
+.overflow-x {
+    overflow-x: auto;
+    height: 500px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 132px repeat(61, minmax(42px, 1fr));
+    text-align: center;
+    font-size: 12px;
+
+    p {
+        margin: 0;
+    }
+
+    &-person {
+        text-align: left;
+        line-height: 44px;
+        background-color: white;
+        color: #1a1a1a;
+    }
+
+    &-fix-left {
+        position: sticky;
+        top: 0;
+        left: 0;
+    }
+
+    &-fix-right {
+        position: sticky;
+        top: 0;
+        right: 0;
+    }
+
+    &-item {
+        padding: 4px;
+        border-left: 1px solid @bd-c;
+
+        &.week {
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: blue;
+                height: 300px;
+                z-index: -1;
+            }
+        }
+    }
+}
