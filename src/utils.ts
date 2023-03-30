@@ -1,6 +1,18 @@
 import moment from 'moment';
 import {DateInfo} from './components/Header';
 
+export function getPrefixClass(name: string | string[], isChild: boolean = false): string {
+    const prefix = 'date-schedule';
+    const sym = isChild ? '__' : '-';
+    const add = (n: string) => (prefix + sym + n);
+
+    if (typeof name === 'string') {
+        return add(name);
+    }
+
+    return name.map(add).join(' ');
+}
+
 export function getDaysFromDateRange(rangeDate: [moment.Moment, moment.Moment]): DateInfo[] {
     const [startDate, endDate] = rangeDate;
     const list = [];

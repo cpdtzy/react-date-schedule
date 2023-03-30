@@ -1,4 +1,5 @@
 import moment from 'moment/moment';
+import {getPrefixClass} from '../utils';
 
 export interface DateInfo {
     dateMoment: moment.Moment,
@@ -14,8 +15,8 @@ interface HeaderProps {
 export function Header(props: HeaderProps) {
     const {list} = props;
     return (
-        <div className={'grid'} style={{gridTemplateColumns: `132px repeat(${list.length}, minmax(42px, 1fr)) 160px`}}>
-            <div className={'grid-person grid-item grid-fix-left'}>人员：12人</div>
+        <div className={getPrefixClass('grid')} style={{gridTemplateColumns: `132px repeat(${list.length}, minmax(42px, 1fr)) 160px`}}>
+            <div className={getPrefixClass(['item', 'fix-left'], true)}>人员：12人</div>
             {
                 list.map(date => {
                     return (
