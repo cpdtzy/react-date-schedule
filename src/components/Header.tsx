@@ -1,5 +1,6 @@
 import moment from 'moment/moment';
 import {getPrefixClass} from '../utils';
+import {ForwardedRef, forwardRef} from 'react';
 
 export interface DateInfo {
     dateMoment: moment.Moment,
@@ -9,30 +10,35 @@ export interface DateInfo {
 }
 
 interface HeaderProps {
-    list: DateInfo[]
+    dates: DateInfo[]
 }
 
-export function Header(props: HeaderProps) {
-    const {list} = props;
+export const Header = forwardRef(function Header(props: HeaderProps, ref: ForwardedRef<HTMLDivElement>) {
+    const {dates} = props;
+
     return (
-        <div className={getPrefixClass('grid')} style={{gridTemplateColumns: `132px repeat(${list.length}, minmax(42px, 1fr)) 160px`}}>
+        <div
+          ref={ref}
+          className={getPrefixClass(['grid', 'head'])}
+          style={{gridTemplateColumns: `132px repeat(${dates.length}, minmax(42px, 1fr)) 160px`, overflow: 'auto visible'}}
+        >
             <div className={getPrefixClass(['item', 'fix-left'], true)}>人员：12人</div>
             {
-                list.map(date => {
+                dates.map(date => {
                     return (
-                        <div className={date.isWeek ? 'week grid-item' : 'grid-item'} key={date.date}>
+                        <div className={getPrefixClass(['item', date.isWeek ? 'item-week' : ''], true)} key={date.date}>
                             {date.date}
-                            <p>
+                            <div>
                                 {date.week}
-                            </p>
+                            </div>
                         </div>
                     );
                 })
             }
-            <div className={'grid-person grid-item grid-fix-right'} style={{display: 'flex'}}>
+            <div className={getPrefixClass(['item', 'fix-right'], true)} style={{display: 'flex'}}>
                 <div>计划投入</div>
                 <div>详细计划</div>
             </div>
         </div>
     );
-}
+});

@@ -4,7 +4,7 @@ import {DateInfo} from './components/Header';
 export function getPrefixClass(name: string | string[], isChild: boolean = false): string {
     const prefix = 'date-schedule';
     const sym = isChild ? '__' : '-';
-    const add = (n: string) => (prefix + sym + n);
+    const add = (n: string) => ( n ? prefix + sym + n : '');
 
     if (typeof name === 'string') {
         return add(name);
@@ -18,7 +18,7 @@ export function getDaysFromDateRange(rangeDate: [moment.Moment, moment.Moment]):
     const list = [];
     const week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
     const isWeek = (day: number): boolean => [0, 6].includes(day);
-    let start = startDate;
+    let start = moment(startDate);
 
     while (endDate.isSameOrAfter(start)) {
         const day = start.day();
