@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/date-schedule.umd.cjs",
   "module": "./dist/date-schedule.js",
   "exports": {
@@ -27,7 +29,10 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
+    "autoprefixer": "^10.4.14",
     "less": "^4.1.3",
+    "postcss": "^8.4.21",
+    "postcss-load-config": "^4.0.1",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
   }

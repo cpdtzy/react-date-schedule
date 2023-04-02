@@ -1,7 +1,7 @@
 import {getDaysFromDateRange} from './utils';
 import {memo, useMemo} from 'react';
 import {Moment} from 'moment';
-import './index.less';
+import styles from './index.module.less';
 import {Header} from './components/Header';
 
 export type Dates = [Moment, Moment];
@@ -14,8 +14,9 @@ function DateSchedule(props: DateScheduleProps) {
     return getDaysFromDateRange(props.dates);
   }, [props.dates]);
 
+  console.log(styles);
   return (
-      <div className={'wrap'}>
+      <div className={styles.wrap}>
         <div className={'overflow-x'}>
           <Header list={dateList} />
         </div>

@@ -1,6 +1,7 @@
 import {defineConfig} from 'vite'
 import {resolve} from 'node:path';
 import react from '@vitejs/plugin-react'
+import autoprefixer from 'autoprefixer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,10 +10,15 @@ export default defineConfig({
     devSourcemap: true,
     modules: {
       scopeBehaviour: 'global',
-      localsConvention: 'camelCase',
+      localsConvention: 'dashes',
       generateScopedName: "[name]__[local]___[hash:base64:5]",
       hashPrefix: 'prefix',
-    }
+    },
+    postcss: {
+      plugins: [
+        autoprefixer(),
+      ],
+    },
   },
   server: {
     open: './example/index.html',
