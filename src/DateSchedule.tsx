@@ -1,15 +1,18 @@
 import {getDaysFromDateRange} from './utils';
 import {memo, useMemo} from 'react';
-import moment from 'moment';
+import {Moment} from 'moment';
 import './index.less';
 import {Header} from './components/Header';
 
-const formatDate = 'YYYY-MM-DD';
+export type Dates = [Moment, Moment];
+interface DateScheduleProps {
+  dates: Dates;
+}
 
-function DateSchedule() {
+function DateSchedule(props: DateScheduleProps) {
   const dateList = useMemo(() => {
-    return getDaysFromDateRange([moment('2023-03-01', formatDate), moment('2023-04-30', formatDate)]);
-  }, []);
+    return getDaysFromDateRange(props.dates);
+  }, [props.dates]);
 
   return (
       <div className={'wrap'}>
