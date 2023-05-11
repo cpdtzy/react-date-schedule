@@ -1,5 +1,11 @@
 import moment from 'moment';
-import {DateInfo} from './components/Header';
+
+export interface DateInfo {
+    dateMoment: moment.Moment,
+    isWeek: boolean,
+    date: string,
+    week: string,
+}
 
 export function getDaysFromDateRange(rangeDate: [moment.Moment, moment.Moment]): DateInfo[] {
     const [startDate, endDate] = rangeDate;

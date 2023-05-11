@@ -1,11 +1,22 @@
 import {getDaysFromDateRange} from './utils';
-import {memo, useMemo} from 'react';
+import React, {FunctionComponent, Key, memo, ReactNode, useMemo} from 'react';
 import {Moment} from 'moment';
-import styles from './index.module.less';
 import {Header} from './components/Header';
+import './index.module.less';
 
 export type Dates = [Moment, Moment];
-interface DateScheduleProps {
+export interface ItemRender {
+  key: Key,
+  title: ReactNode | FunctionComponent<{}>,
+  width: string | number,
+  render: ReactNode | FunctionComponent<{}>,
+}
+export interface Render {
+  left: ItemRender,
+  item: ItemRender,
+  right: ItemRender,
+}
+interface DateScheduleProps extends Render {
   dates: Dates;
 }
 
@@ -14,11 +25,10 @@ function DateSchedule(props: DateScheduleProps) {
     return getDaysFromDateRange(props.dates);
   }, [props.dates]);
 
-  console.log(styles);
   return (
-      <div className={styles.wrap}>
-        <div className={'overflow-x'}>
-          <Header list={dateList} />
+      <div className={'rc-schedule-wrap'}>
+        <div className={'rc-schedule-overflowX'}>
+          <Header list={dateList} left={props.left} item={props.item} right={props.right} />
         </div>
       </div>
   );
